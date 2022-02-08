@@ -1,3 +1,4 @@
+from functools import cache
 from pathlib import Path
 from typing import Sequence
 
@@ -18,6 +19,7 @@ class FlitReader(Pep621Reader):
     def get_requires_for_build_wheel(self) -> Sequence[str]:
         return self._get_requires()
 
+    @cache
     def get_metadata(self) -> Distribution:
         pyproject = self.path / "pyproject.toml"
         doc = tomlkit.parse(pyproject.read_text())

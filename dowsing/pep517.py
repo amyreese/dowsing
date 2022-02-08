@@ -2,6 +2,7 @@ import importlib
 import json
 import sys
 from pathlib import Path
+from functools import cache
 from typing import Any, Dict, List, Tuple, Type
 
 import tomlkit
@@ -20,6 +21,7 @@ KNOWN_BACKENDS: Dict[str, str] = {
 }
 
 
+@cache
 def get_backend(path: Path) -> Tuple[List[str], BaseReader]:
     pyproject = path / "pyproject.toml"
     backend = "setuptools.build_meta:__legacy__"

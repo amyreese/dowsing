@@ -1,6 +1,7 @@
 import posixpath
 from pathlib import Path
 from typing import Generator, Mapping, Sequence, Tuple
+from functools import cache
 
 from setuptools import find_packages
 
@@ -31,6 +32,7 @@ class SetuptoolsReader(BaseReader):
     def get_requires_for_build_wheel(self) -> Sequence[str]:
         return ("setuptools", "wheel") + self._get_requires()
 
+    @cache
     def get_metadata(self) -> Distribution:
         if (self.path / "setup.cfg").exists():
             d1 = from_setup_cfg(self.path, {})

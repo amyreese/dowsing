@@ -1,3 +1,4 @@
+from functools import cache
 import posixpath
 from pathlib import Path
 from typing import Sequence
@@ -30,6 +31,7 @@ class PoetryReader(BaseReader):
     def get_requires_for_build_wheel(self) -> Sequence[str]:
         return ()  # TODO
 
+    @cache
     def get_metadata(self) -> Distribution:
         pyproject = self.path / "pyproject.toml"
         doc = tomlkit.parse(pyproject.read_text())
