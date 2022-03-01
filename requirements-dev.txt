@@ -1,5 +1,5 @@
 black==22.1.0
-click==8.0.3
+click==8.0.4
 coverage==4.5.4
 flake8==3.7.9
 mypy==0.931
